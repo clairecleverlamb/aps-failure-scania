@@ -31,6 +31,8 @@ y_train = train_df['class']
 X_test = test_df.drop('class', axis=1)
 y_test = test_df['class']
 
+print(f"Features and labels defined. Training samples: {X_train.shape[0]}, Features: {X_train.shape[1]}\n")
+
 # Model definition - logistic regression with class weights
 model = LogisticRegression(class_weight={0: 1, 1: 50}, max_iter=1000, solver='liblinear')
 model.fit(X_train, y_train)
@@ -54,7 +56,7 @@ print(f"\nType 1 Errors (False Positives): {type_1_errors} * {cost_1} = {type_1_
 print(f"Type 2 Errors (False Negatives): {type_2_errors} * {cost_2} = {type_2_errors * cost_2}")
 print(f"Total Cost: {total_cost}")
 
-# Try random forest
+# Evaluation: random forest
 rf_model = RandomForestClassifier(class_weight={0: 1, 1: 50}, n_estimators=100, random_state=42)
 rf_model.fit(X_train, y_train)
 y_pred_rf = rf_model.predict(X_test)
@@ -69,8 +71,3 @@ type_2_errors_rf = cm_rf[1, 0]
 total_cost_rf = cost_1 * type_1_errors_rf + cost_2 * type_2_errors_rf
 print(f"\nRandom Forest Total Cost: {total_cost_rf}")
 
-# Optionally explore histogram sums if you can identify histogram feature groups
-# Example placeholder (replace 'histogram_prefix' with actual prefixes if identifiable)
-# histogram_cols = [col for col in X_train.columns if col.startswith('histogram_prefix')]
-# train_df['histogram_sum'] = train_df[histogram_cols].sum(axis=1)
-# test_df['histogram_sum'] = test_df[histogram_cols].sum(axis=1)
