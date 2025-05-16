@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project focuses on predicting Air Pressure System (APS) failures in Scania Trucks using the APS Failure dataset provided by Scania via the UCI Machine Learning Repository.
+This project focuses on predicting Air Pressure System (APS) failures in Scania Trucks using the APS Failure dataset provided by Scania.
 
 ## Dataset
 
